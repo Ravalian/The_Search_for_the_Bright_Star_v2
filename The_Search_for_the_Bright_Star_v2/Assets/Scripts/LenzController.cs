@@ -12,16 +12,18 @@ public class LenzController : MonoBehaviour
     public int Health { get; private set; }
     public int MaxHealth = 5;
 
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigidbody2d;
     private float horizontal;
     private float vertical;
+    Animator animator;
 
     Vector2 lookDirection = new Vector2(1, 0);
 
     // Start is called before the first frame update
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         Health = MaxHealth;
     }
@@ -32,7 +34,6 @@ public class LenzController : MonoBehaviour
         //Get horizontal and vertical movement from pressing left or right keys
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
         Vector2 move = new Vector2(horizontal, vertical);
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
@@ -44,23 +45,26 @@ public class LenzController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C)) {
             Launch();
         }
+
+        animator.SetFloat("MoveX", horizontal);
+        animator.SetFloat("MoveY", vertical);
     }
 
     private void FixedUpdate()
     {
-        var position = rigidbody2D.position;
+        var position = rigidbody2d.position;
 
         //Time.deltaTime - make movement not dependent on frames
         position.x += speed * horizontal * Time.deltaTime; 
         position.y += speed * vertical * Time.deltaTime;
 
-        rigidbody2D.MovePosition(position);
+        rigidbody2d.MovePosition(position);
     }
 
     // function to use range attack
     void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
