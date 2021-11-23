@@ -6,7 +6,7 @@ using System.Threading;
 
 public class CateractController : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigidbody2d;
     private float horizontal;
     private float vertical;
     Animator animator;
@@ -16,7 +16,7 @@ public class CateractController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         //thread1 = new Thread(() => DoWork());
         
