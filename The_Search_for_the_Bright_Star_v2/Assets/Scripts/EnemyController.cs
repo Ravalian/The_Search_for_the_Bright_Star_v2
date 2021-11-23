@@ -45,15 +45,11 @@ public class EnemyController : MonoBehaviour
         if (vertical)
         {
             position.y = position.y + Time.deltaTime * speed * direction;
-            //Debug.Log(position.y);
-            //Debug.Log(direction);
             animator.SetFloat("MoveY", direction);
         }
         else
         {
             position.x = position.x + Time.deltaTime * speed * direction;
-            //Debug.Log(position.x);
-            //Debug.Log(direction);
             animator.SetFloat("MoveX", direction);
         }
 
@@ -79,7 +75,7 @@ public class EnemyController : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
-        Debug.Log("Enemys: " + currentHealth + "/" + MaxHealth);
+        Debug.Log("Enemy health: " + currentHealth + "/" + MaxHealth);
 
         if (currentHealth <= 0)
         {

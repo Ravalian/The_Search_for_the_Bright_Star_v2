@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 100604676508149914}
   - component: {fileID: 100604676508149913}
   - component: {fileID: 100604676508149912}
+  - component: {fileID: 8769703126263935797}
   - component: {fileID: -6009645368334123902}
   - component: {fileID: 3091427523207131709}
-  - component: {fileID: 8769703126263935797}
   m_Layer: 8
   m_Name: Lenz
   m_TagString: Untagged
@@ -101,6 +101,26 @@ MonoBehaviour:
   speed: 3
   projectilePrefab: {fileID: 8345949604438098501, guid: cdbb583c0f950bb4bac49406b5ed1f23, type: 3}
   MaxHealth: 5
+  currentHealth: 0
+--- !u!95 &8769703126263935797
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100604676508149919}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27a4400205da7d74eb8b27042912a14b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &-6009645368334123902
 Rigidbody2D:
   serializedVersion: 4
@@ -148,22 +168,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0058517, y: 0.22345603}
   m_EdgeRadius: 0
---- !u!95 &8769703126263935797
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100604676508149919}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27a4400205da7d74eb8b27042912a14b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

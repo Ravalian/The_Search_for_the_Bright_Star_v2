@@ -37,15 +37,15 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        EnemyController e = other.collider.GetComponent<EnemyController>();
+        EnemyController enemy = other.collider.GetComponent<EnemyController>();
 
-        if (e != null)
+        if (enemy != null)
         {
-            e.ChangeHealth(-1);
+            enemy.ChangeHealth(-1);
         }
 
         //we also add a debug log to know what the projectile touch
-        Debug.Log("Projectile Colision with" + other.gameObject);
+        Debug.Log("Projectile Colision with: " + other.gameObject);
         Destroy(gameObject);
     }
 }

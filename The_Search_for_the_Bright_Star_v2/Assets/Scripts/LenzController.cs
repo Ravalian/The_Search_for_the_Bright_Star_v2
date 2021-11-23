@@ -78,6 +78,6 @@ public class LenzController : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
-        Debug.Log("Players: " + currentHealth + "/" + MaxHealth);
+        Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
     }
 }
