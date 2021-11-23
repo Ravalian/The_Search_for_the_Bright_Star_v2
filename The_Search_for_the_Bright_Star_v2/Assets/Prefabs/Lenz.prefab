@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6009645368334123902}
   - component: {fileID: 3091427523207131709}
   - component: {fileID: 8769703126263935797}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lenz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   projectilePrefab: {fileID: 8345949604438098501, guid: cdbb583c0f950bb4bac49406b5ed1f23, type: 3}
+  MaxHealth: 5
 --- !u!50 &-6009645368334123902
 Rigidbody2D:
   serializedVersion: 4

@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2830031972751028906, guid: 7d23733740d9899498a176fe318f0adc, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2830031972751028906, guid: 7d23733740d9899498a176fe318f0adc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2291,6 +2291,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 009ac1d0db4a2b243a9f7f56f8eede12, type: 3}
+--- !u!1 &877778028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5945407245550699374, guid: db2c240c1a9a0be44921ea1003b768e2, type: 3}
+  m_PrefabInstance: {fileID: 1683266122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &877778033
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877778028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5}
+  m_EdgeRadius: 0
+--- !u!114 &877778034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877778028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3be7399578c064fbe64a40c740bedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &915154572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3697,7 +3740,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 592b0810a8e68c540b6d1e6984bf800a, type: 2}
     - target: {fileID: 3362922924952762392, guid: db2c240c1a9a0be44921ea1003b768e2, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3362922924952762392, guid: db2c240c1a9a0be44921ea1003b768e2, type: 3}
       propertyPath: m_LocalPosition.x
