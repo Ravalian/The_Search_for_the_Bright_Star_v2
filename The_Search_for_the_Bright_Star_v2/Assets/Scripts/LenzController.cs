@@ -10,12 +10,14 @@ public class LenzController : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private float horizontal;
     private float vertical;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         //Gets RigidBody2D attached to the gameobject the script is attached to
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called every frame
@@ -26,6 +28,8 @@ public class LenzController : MonoBehaviour
         //Get horizontal and vertical movement from pressing left or right keys
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        animator.SetFloat("MoveX", horizontal);
+        animator.SetFloat("MoveY", vertical);
     }
 
     void FixedUpdate()
