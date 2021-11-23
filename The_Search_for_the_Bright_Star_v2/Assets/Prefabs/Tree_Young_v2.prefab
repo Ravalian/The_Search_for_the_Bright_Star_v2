@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048342603439353273}
   - component: {fileID: 2709110600947357523}
+  - component: {fileID: 1329742926373903772}
   m_Layer: 0
   m_Name: Tree_Young_v2
   m_TagString: Gameobjects_Trees
@@ -82,3 +83,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!61 &1329742926373903772
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922513326163833815}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.060111046, y: -0.2888087}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.2}
+    oldSize: {x: 4, y: 5.15625}
+    newSize: {x: 4, y: 5.15625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0117283, y: 1.2999275}
+  m_EdgeRadius: 0
