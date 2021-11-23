@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -7,26 +5,29 @@ using UnityEngine;
  */
 public class LenzController : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2d;
+    public float speed = 3.0f;
+
+    public GameObject projectilePrefab;
+
+    public int Health { get; private set; }
+    public int MaxHealth = 5;
+
+    private Rigidbody2D rigidbody2D;
     private float horizontal;
     private float vertical;
 
     Vector2 lookDirection = new Vector2(1, 0);
 
-    public float speed = 3.0f;
-    public GameObject projectilePrefab;
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //Gets RigidBody2D attached to the gameobject the script is attached to
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+
+        Health = MaxHealth;
     }
 
     // Update is called every frame
-    //Write anything you want to happen continuously in the game
-    //(reading input from the player, moving GameObjects, or counting time passing)
-    void Update()
+    private void Update()
     {
         //Get horizontal and vertical movement from pressing left or right keys
         horizontal = Input.GetAxis("Horizontal");
@@ -45,25 +46,32 @@ public class LenzController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        var position = rigidbody2d.position;
+        var position = rigidbody2D.position;
 
         //Time.deltaTime - make movement not dependent on frames
         position.x += speed * horizontal * Time.deltaTime; 
         position.y += speed * vertical * Time.deltaTime;
 
-        rigidbody2d.MovePosition(position);
+        rigidbody2D.MovePosition(position);
     }
 
     // function to use range attack
     void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
 
         //animator.SetTrigger("Launch");
+    }
+
+    //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
+    public void ChangeHealth(int amount)
+    {
+        Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
+        Debug.Log(Health + "/" + MaxHealth);
     }
 }
