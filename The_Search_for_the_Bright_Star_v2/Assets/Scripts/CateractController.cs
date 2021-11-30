@@ -45,7 +45,10 @@ public class CateractController : MonoBehaviour
         }
 
         animator.SetFloat("MoveX", horizontal);
+        //Debug.Log(horizontal);
+
         animator.SetFloat("MoveY", vertical);
+        //Debug.Log(vertical);
 
 
 
