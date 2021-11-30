@@ -70,7 +70,7 @@ public class LenzController : MonoBehaviour
             if(hit.collider != null)
             {
                 Debug.Log("Raycast has hit the obejct " + hit.collider.gameObject);
-                TreeStump_Dialog treeStump = hit.collider.GetComponent<TreeStump_Dialog>();
+                OldTreeStump treeStump = hit.collider.GetComponent<OldTreeStump>();
                 if (treeStump != null)
                 {
                     treeStump.DisplayDialog();
