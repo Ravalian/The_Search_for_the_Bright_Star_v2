@@ -23,12 +23,16 @@ public class LenzController : MonoBehaviour
 
     Vector2 lookDirection = new Vector2(1, 0);
 
+    private AudioSource _audioSource;
+    public AudioClip ShotProjectile;
+
     // Start is called before the first frame update
     private void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
+        _audioSource = GetComponent<AudioSource>();
+        
         Mana = MaxMana;
         currentHealth = MaxHealth;
     }
@@ -84,6 +88,8 @@ public class LenzController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
         Mana = Mana - 0.5f;
         //animator.SetTrigger("Launch");
+
+        PlaySound(ShotProjectile);
         ManaBar.Instance.SetValue(Mana/MaxMana);
       }
     }
@@ -94,5 +100,10 @@ public class LenzController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
         Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
         HealthBar.Instance.SetValue((float)Health/MaxHealth);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        _audioSource.PlayOneShot(clip);
     }
 }
