@@ -5,24 +5,30 @@ using UnityEngine;
  */
 public class LenzController : MonoBehaviour
 {
-    public float speed = 3.0f;
-
+    
+    // Player attack variables
     public GameObject projectilePrefab;
 
-    //public int Health { get; private set; }
+    // Player health variables
     public int MaxHealth = 5;
+    public int Health { get { return currentHealth; } }
+    public int currentHealth;
+
+    // Player mana variables
     public int MaxMana = 5;
     public float Mana {get; private set;}
-    public int Health { get { return currentHealth; }}
 
-    public int currentHealth;
+    // Player movement variables
+    public float speed = 3.0f;
     private Rigidbody2D rigidbody2d;
     private float horizontal;
     private float vertical;
-    Animator animator;
-
     Vector2 lookDirection = new Vector2(1, 0);
 
+    // Player animator variables
+    Animator animator;
+
+    // Player audio variables
     private AudioSource _audioSource;
     public AudioClip ShotProjectile;
 
@@ -106,6 +112,14 @@ public class LenzController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
         Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
         HealthBar.Instance.SetValue((float)Health/MaxHealth);
+    }
+
+    //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
+    public void ChangeMana(int amount)
+    {
+        Mana = Mathf.Clamp(Mana + amount, 0, MaxMana);
+        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
+        ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 
     public void PlaySound(AudioClip clip)

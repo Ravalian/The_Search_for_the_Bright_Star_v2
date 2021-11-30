@@ -99,30 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdecc1dfa86d4445879277169db04b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   projectilePrefab: {fileID: 8345949604438098501, guid: cdbb583c0f950bb4bac49406b5ed1f23, type: 3}
   MaxHealth: 5
-  ShotProjectile: {fileID: 8300000, guid: e13562ae8a10e004c811f403884b5fcb, type: 3}
   currentHealth: 0
---- !u!95 &8769703126263935797
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100604676508149919}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27a4400205da7d74eb8b27042912a14b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  MaxMana: 10
+  speed: 3
+  ShotProjectile: {fileID: 8300000, guid: e13562ae8a10e004c811f403884b5fcb, type: 3}
 --- !u!50 &-6009645368334123902
 Rigidbody2D:
   serializedVersion: 4
@@ -170,6 +152,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0058517, y: 0.22345603}
   m_EdgeRadius: 0
+--- !u!95 &8769703126263935797
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100604676508149919}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27a4400205da7d74eb8b27042912a14b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &7190268358573078715
 AudioSource:
   m_ObjectHideFlags: 0
