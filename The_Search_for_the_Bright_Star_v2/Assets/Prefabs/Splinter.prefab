@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2830031972751028906}
   - component: {fileID: 3379610910010959567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Splinter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
