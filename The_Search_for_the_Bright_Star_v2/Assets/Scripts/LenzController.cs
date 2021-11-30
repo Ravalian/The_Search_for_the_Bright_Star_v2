@@ -52,7 +52,7 @@ public class LenzController : MonoBehaviour
         animator.SetFloat("MoveY", vertical);
 
         if (Input.GetKeyDown(KeyCode.V)) {
-            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("InteractableObject"));
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1f, LayerMask.GetMask("InteractableObject"));
             if(hit.collider != null)
             {
                 Debug.Log("Raycast has hit the obejct " + hit.collider.gameObject);
