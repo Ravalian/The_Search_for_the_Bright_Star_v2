@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreeStump_Dialog : MonoBehaviour
 {
     public float displayTime = 4.0f;
     public GameObject dialogBox;
     float timerDisplay;
+    public Text dialogueText;
+    private Queue<string> sentences;
 
     // Start is called before the first frame update
     void Start()
     {
         dialogBox.SetActive(false);
-        timerDisplay = -1.0f;        
+        sentences = new Queue<string>();
+        timerDisplay = -1.0f;   
     }
 
     // Update is called once per frame
@@ -32,5 +36,10 @@ public class TreeStump_Dialog : MonoBehaviour
     {
         timerDisplay = displayTime;
         dialogBox.SetActive(true);
+    }
+
+    public void EndDialog()
+    {
+        dialogBox.SetActive(false);
     }
 }
