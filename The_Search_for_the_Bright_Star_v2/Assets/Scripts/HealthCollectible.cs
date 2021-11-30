@@ -12,7 +12,7 @@ public class HealthCollectible : MonoBehaviour
 
         if (lenzController != null)
         {
-            if (lenzController.Health < lenzController.MaxHealth)
+            if (lenzController.currentHealth < lenzController.MaxHealth)
             {
                 lenzController.ChangeHealth(1);
                 Destroy(gameObject);

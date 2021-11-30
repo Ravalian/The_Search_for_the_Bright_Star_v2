@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
 
+    private float destroyTime = 5;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,6 +21,13 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        WaitAndDestroy();
+    }
+
+    void WaitAndDestroy()
+    {
+        Destroy(gameObject, destroyTime);
     }
 
     public void Launch(Vector2 direction, float force)
@@ -28,8 +37,15 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        EnemyController enemy = other.collider.GetComponent<EnemyController>();
+
+        if (enemy != null)
+        {
+            enemy.ChangeHealth(-1);
+        }
+
         //we also add a debug log to know what the projectile touch
-        Debug.Log("Projectile Colision with" + other.gameObject);
+        Debug.Log("Projectile Colision with: " + other.gameObject);
         Destroy(gameObject);
     }
 }
