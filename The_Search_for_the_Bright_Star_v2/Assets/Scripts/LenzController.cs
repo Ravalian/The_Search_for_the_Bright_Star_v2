@@ -9,11 +9,13 @@ public class LenzController : MonoBehaviour
 
     public GameObject projectilePrefab;
 
-    public int Health { get; private set; }
+    //public int Health { get; private set; }
     public int MaxHealth = 5;
     public int MaxMana = 5;
     public float Mana {get; private set;}
+    public int Health { get { return currentHealth; }}
 
+    public int currentHealth;
     private Rigidbody2D rigidbody2d;
     private float horizontal;
     private float vertical;
@@ -27,8 +29,8 @@ public class LenzController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        Health = MaxHealth;
         Mana = MaxMana;
+        currentHealth = MaxHealth;
     }
 
     // Update is called every frame
@@ -80,9 +82,9 @@ public class LenzController : MonoBehaviour
 
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeHealth(int amount)
-    {
-        Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
-        Debug.Log(Health + "/" + MaxHealth);
+    {   
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
+        Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
         HealthBar.Instance.SetValue((float)Health/MaxHealth);
     }
 }
