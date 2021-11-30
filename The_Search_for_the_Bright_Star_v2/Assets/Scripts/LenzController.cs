@@ -19,6 +19,9 @@ public class LenzController : MonoBehaviour
 
     Vector2 lookDirection = new Vector2(1, 0);
 
+    private AudioSource _audioSource;
+    public AudioClip ShotProjectile;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,6 +29,8 @@ public class LenzController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         Health = MaxHealth;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called every frame
@@ -70,6 +75,8 @@ public class LenzController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         //animator.SetTrigger("Launch");
+
+        PlaySound(ShotProjectile);
     }
 
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
@@ -77,5 +84,10 @@ public class LenzController : MonoBehaviour
     {
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
         Debug.Log(Health + "/" + MaxHealth);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        _audioSource.PlayOneShot(clip);
     }
 }
