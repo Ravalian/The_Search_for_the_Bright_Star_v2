@@ -6,7 +6,10 @@ using TMPro;
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject testDialogue;
+    //[SerializeField] private DialogueObject testDialogue;
+    [SerializeField] private GameObject dialogueBox;
+
+    public bool isOpen {get; private set;}
 
     private TypeWritterEffect typeWritterEffect;
 
@@ -15,16 +18,29 @@ public class DialogueUI : MonoBehaviour
         //GetComponent<TypeWritterEffect>().Run("Behind the old tree stump \nYou found an broken stone tablet! ", textLabel);
 
         typeWritterEffect = GetComponent<TypeWritterEffect>();
-        ShowDialogue(testDialogue);
+        ClosedDialogueBox();
+        //ShowDialogue(testDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject){
+        isOpen = true;
+        dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject){
         foreach(string dialogue in dialogueObject.Dialogue){
             yield return typeWritterEffect.Run(dialogue, textLabel);
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.V));
         }
+
+        ClosedDialogueBox();
+    }
+
+    private void ClosedDialogueBox()
+    {
+        isOpen = false;
+        dialogueBox.SetActive(false);
+        textLabel.text = string.Empty;   
     }
 }
