@@ -32,6 +32,11 @@ public class LenzController : MonoBehaviour
     private AudioSource _audioSource;
     public AudioClip ShotProjectile;
 
+    //Player dialogue variables
+    [SerializeField] private DialogueUI dialogueUI;
+    public DialogueUI DialogueUI => dialogueUI;
+    public IInterctable Interctable {get; set;}
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -46,6 +51,9 @@ public class LenzController : MonoBehaviour
     // Update is called every frame
     private void Update()
     {
+        //Lenz cannot move while interacting with dialogue
+        if(dialogueUI.isOpen == true) return;
+
         //Get horizontal and vertical movement from pressing left or right keys
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
@@ -63,6 +71,14 @@ public class LenzController : MonoBehaviour
 
         animator.SetFloat("MoveX", horizontal);
         animator.SetFloat("MoveY", vertical);
+
+        if (Input.GetKeyDown(KeyCode.V)) 
+        {
+            Debug.Log("Pressed down 'V'");
+            if(Interctable != null){
+                Interctable.Interact(this);
+            }
+        }
     }
 
     private void FixedUpdate()
