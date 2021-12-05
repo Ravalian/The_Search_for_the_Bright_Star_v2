@@ -51,6 +51,9 @@ public class LenzController : MonoBehaviour
     // Update is called every frame
     private void Update()
     {
+        //Lenz cannot move while interacting with dialogue
+        if(dialogueUI.isOpen == true) return;
+
         //Get horizontal and vertical movement from pressing left or right keys
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
