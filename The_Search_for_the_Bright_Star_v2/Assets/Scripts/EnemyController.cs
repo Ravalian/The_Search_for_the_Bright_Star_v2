@@ -15,15 +15,25 @@ public class EnemyController : MonoBehaviour
     
     // Patrole variables
     public Transform[] patrolPoints;
-    private Transform currentPatrolPoint;
-    private int currentPatrolIndex;
+    Transform currentPatrolPoint;
+    int currentPatrolIndex;
 
     // Enemy chase variables
     public Transform target;
     public float chaseRange;
 
-    private float timer;
-    private int direction = 1;
+    // Enemy attack variables
+    public int damage;
+    public float attackDelay;
+    public float attackRange;
+    float lastAttackTime;
+
+    // Enemy awareness
+    public float awarenessRange;
+    public float distanceToTarget;
+
+    //private float timer;
+    //private int direction = 1;
 
     Animator animator;
     Rigidbody2D rigidbody2d;
@@ -34,7 +44,7 @@ public class EnemyController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        timer = changeTime;
+        //timer = changeTime;
         currentHealth = MaxHealth;
 
         currentPatrolIndex = 0;
@@ -43,13 +53,13 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        //timer -= Time.deltaTime;
 
-        if (timer < 0)
-        {
-            direction = -direction;
-            timer = changeTime;
-        }
+        //if (timer < 0)
+        //{
+        //    direction = -direction;
+        //    timer = changeTime;
+        //}
     }
 
     void FixedUpdate()
@@ -70,11 +80,60 @@ public class EnemyController : MonoBehaviour
 
         //rigidbody2d.MovePosition(position);
 
+        // Check the ditstance to the player
+        distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        // Work in progress patroling script
-        transform.Translate (Vector3.up * Time.deltaTime * speed);
+        // Check to see if the enmey is aware of the player - if not then patrol
+        if (distanceToTarget > awarenessRange)
+        {
+            Patrol();
+        }
+
+        // Check the distance between enemy and player, to see if the player is within the awarenessRange and out of attackRange - chase
+        if (distanceToTarget < awarenessRange && distanceToTarget > attackRange)
+        {
+            Chase();
+        }
+
+        // Check the distance between enemy and player to see if the player is close enough to attack
+        if (distanceToTarget < attackRange)
+        {
+            Attack();
+        }
+    }
+
+    //void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    LenzController player = other.gameObject.GetComponent<LenzController>();
+
+    //    if (player != null)
+    //    {
+    //        player.ChangeHealth(-1);
+    //    }
+    //}
+
+    public void EnemyIsDead()
+    {
+        Destroy(gameObject);
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
+        Debug.Log("Enemy health: " + currentHealth + "/" + MaxHealth);
+
+        if (currentHealth <= 0)
+        {
+            EnemyIsDead();
+        }
+    }
+
+    void Patrol()
+    {
+        // Patroling AI
+        transform.Translate(speed * Time.deltaTime * Vector3.up);
         // Check to see if we have reached the patrole point
-        if(Vector3.Distance(transform.position, currentPatrolPoint.position) < .1f)
+        if (Vector3.Distance(transform.position, currentPatrolPoint.position) < .1f)
         {
             // We have reached the patrol point - get the next one
             // Check to see if we have anymore patrol points left - if not go back to the beginning
@@ -93,15 +152,6 @@ public class EnemyController : MonoBehaviour
         // Finding the direction Vector that points to the patrolpoint
         Vector3 patrolPointDir = currentPatrolPoint.position - transform.position;
 
-        //if (patrolPointDir.y < 1)
-        //{
-        //    animator.SetFloat("MoveY", patrolPointDir.y);
-        //}
-        //if (patrolPointDir.x > 1)
-        //{
-        //    animator.SetFloat("MoveX", patrolPointDir.x);
-        //}
-
         // Get the angle in degrees that we need to turn towrds
         float angle = Mathf.Atan2(patrolPointDir.y, patrolPointDir.x) * Mathf.Rad2Deg - 90f;
         // Made the rotation that we need to face
@@ -109,44 +159,36 @@ public class EnemyController : MonoBehaviour
         // Apply the rotation to our transform
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
 
-        //// Work ing progress chasing script
-        //// Get the distance to the target and check to see if it is close enough to chase
-        //float distanceToTarget = Vector3.Distance(transform.position, target.position);
-        //if (distanceToTarget < chaseRange)
-        //{
-        //    // Start chasing the target - turn and move towards the target
-        //    Vector3 targetDir = target.position - transform.position;
-        //    float angle1 = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
-        //    Quaternion q1 = Quaternion.AngleAxis(angle1, Vector3.forward);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, q1, 180f);
 
-        //    transform.Translate(Vector3.up * Time.deltaTime * speed);
-        //}
+        animator.SetFloat("MoveY", patrolPointDir.y);
+        animator.SetFloat("MoveX", patrolPointDir.x);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void Chase()
     {
-        LenzController player = other.gameObject.GetComponent<LenzController>();
+        // Chasing Player AI
+        // Get the distance to the target and check to see if it is close enough to chase
 
-        if (player != null)
+        // Start chasing the target - turn and move towards the target
+        Vector3 targetDir = target.position - transform.position;
+        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+
+        transform.Translate(speed * Time.deltaTime * Vector3.up);
+    }
+
+    void Attack()
+    {
+        // Attacking AI - Melee
+
+        // Check to see if enough time has passed since the last attack
+        if (Time.time > lastAttackTime + attackDelay)
         {
-            player.ChangeHealth(-1);
-        }
-    }
+            target.SendMessage("ChangeHealth", -damage);
 
-    public void EnemyIsDead()
-    {
-        Destroy(gameObject);
-    }
-
-    public void ChangeHealth(int amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
-        Debug.Log("Enemy health: " + currentHealth + "/" + MaxHealth);
-
-        if (currentHealth <= 0)
-        {
-            EnemyIsDead();
+            // Record the time of the attacked
+            lastAttackTime = Time.time;
         }
     }
 }

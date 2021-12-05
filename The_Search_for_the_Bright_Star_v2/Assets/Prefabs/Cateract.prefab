@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 5945407245550699374}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 592b0810a8e68c540b6d1e6984bf800a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -135,6 +135,14 @@ MonoBehaviour:
   changeTime: 3
   MaxHealth: 5
   currentHealth: 0
+  patrolPoints: []
+  target: {fileID: 100604676508149914, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
+  chaseRange: 7
+  damage: 1
+  attackDelay: 2
+  attackRange: 1
+  awarenessRange: 8
+  distanceToTarget: 0
 --- !u!50 &-7206163082802763673
 Rigidbody2D:
   serializedVersion: 4
