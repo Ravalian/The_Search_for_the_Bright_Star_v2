@@ -96000,11 +96000,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 33
-=======
   m_RootOrder: 24
->>>>>>> main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143657792
 GameObject:
@@ -96262,11 +96258,7 @@ PrefabInstance:
       objectReference: {fileID: 710606669}
     - target: {fileID: 100604676508149914, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 7
-=======
       value: 5
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: 100604676508149914, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -96331,17 +96323,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.45
-=======
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
@@ -96351,7 +96332,6 @@ PrefabInstance:
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.52
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -96416,11 +96396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2944010721919238580, guid: d56169a53f756c645bfccffc9a7b67be, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 13
-=======
       value: 6
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: 2944010721919238580, guid: d56169a53f756c645bfccffc9a7b67be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -96497,11 +96473,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7995638317964616788, guid: 9205c6c96c420a24d86e6465b05757a9, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 34
-=======
       value: 27
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: 7995638317964616788, guid: 9205c6c96c420a24d86e6465b05757a9, type: 3}
       propertyPath: m_LocalPosition.x
