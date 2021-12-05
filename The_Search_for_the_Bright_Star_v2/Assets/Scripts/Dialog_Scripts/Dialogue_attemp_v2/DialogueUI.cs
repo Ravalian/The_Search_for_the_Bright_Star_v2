@@ -6,7 +6,7 @@ using TMPro;
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text textLabel;
-    //[SerializeField] private DialogueObject testDialogue;
+    
     [SerializeField] private GameObject dialogueBox;
 
     public bool isOpen {get; private set;}
@@ -14,12 +14,8 @@ public class DialogueUI : MonoBehaviour
     private TypeWritterEffect typeWritterEffect;
 
     private void Start() {
-        //textlabel.text = "Behind the old tree stump \nYou found an broken stone tablet! ";
-        //GetComponent<TypeWritterEffect>().Run("Behind the old tree stump \nYou found an broken stone tablet! ", textLabel);
-
         typeWritterEffect = GetComponent<TypeWritterEffect>();
         ClosedDialogueBox();
-        //ShowDialogue(testDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject){
@@ -30,11 +26,29 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject){
         foreach(string dialogue in dialogueObject.Dialogue){
-            yield return typeWritterEffect.Run(dialogue, textLabel);
+            yield return RunTypingEffect(dialogue);
+
+            textLabel.text = dialogue;
+
+            yield return null;
+
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.V));
         }
 
         ClosedDialogueBox();
+    }
+
+    private IEnumerator RunTypingEffect(string dialogue){
+        typeWritterEffect.Run(dialogue, textLabel);
+
+        while(typeWritterEffect.IsRunning){
+            yield return null;
+
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                typeWritterEffect.Stop();
+            }
+        }
     }
 
     private void ClosedDialogueBox()
