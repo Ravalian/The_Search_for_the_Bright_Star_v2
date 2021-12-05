@@ -7669,6 +7669,8 @@ GameObject:
   - component: {fileID: 710606666}
   - component: {fileID: 710606665}
   - component: {fileID: 710606664}
+  - component: {fileID: 710606669}
+  - component: {fileID: 710606668}
   m_Layer: 5
   m_Name: DialogueCanvas
   m_TagString: Untagged
@@ -7757,6 +7759,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &710606668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710606663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe3c00a40446e54fb7cd8c94c830ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeWritterSpeed: 50
+  dialogueText: {fileID: 0}
+--- !u!114 &710606669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710606663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3044e116a91f6a41ae2de7825decacb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textLabel: {fileID: 0}
+  testDialogue: {fileID: 0}
 --- !u!1 &742501276
 GameObject:
   m_ObjectHideFlags: 0
@@ -7872,6 +7902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textLabel: {fileID: 497315344}
+  testDialogue: {fileID: 11400000, guid: 7f096b04f2aaf3b4e8824b3f701c4fa7, type: 2}
 --- !u!114 &742501282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7884,6 +7915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe3c00a40446e54fb7cd8c94c830ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeWritterSpeed: 50
+  dialogueText: {fileID: 0}
 --- !u!1001 &762275771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14697,7 +14730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb75ab486e282ff4e83b6c6179032ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayTime: 4
+  displayTime: 10
   dialogBox: {fileID: 742501276}
   dialogueText: {fileID: 0}
 --- !u!1 &2030296547
@@ -95629,11 +95662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.13
+      value: -9.34
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.63
+      value: 8.45
       objectReference: {fileID: 0}
     - target: {fileID: 6762194049660839131, guid: fb7fa51c3d315e048a389267c6d5c5c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -95702,11 +95735,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2944010721919238580, guid: d56169a53f756c645bfccffc9a7b67be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.49
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 2944010721919238580, guid: d56169a53f756c645bfccffc9a7b67be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.52
+      value: 3.71
       objectReference: {fileID: 0}
     - target: {fileID: 2944010721919238580, guid: d56169a53f756c645bfccffc9a7b67be, type: 3}
       propertyPath: m_LocalPosition.z

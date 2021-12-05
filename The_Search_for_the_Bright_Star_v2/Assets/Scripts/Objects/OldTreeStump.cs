@@ -14,25 +14,25 @@ public class OldTreeStump : MonoBehaviour
     void Start()
     {
         dialogBox.SetActive(false);
-        //timerDisplay = -1.0f;   
+        timerDisplay = -1.0f;   
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (timerDisplay >= 0)
-        // {
-        //     timerDisplay -= Time.deltaTime;
-        //     if(timerDisplay < 0)
-        //     {
-        //         dialogBox.SetActive(false);
-        //     }
-        // }   
+        if (timerDisplay >= 0)
+        {
+            timerDisplay -= Time.deltaTime;
+            if(timerDisplay < 0)
+            {
+                dialogBox.SetActive(false);
+            }
+        }   
     }
 
     public void DisplayDialog()
     {
-        //timerDisplay = displayTime;
+        timerDisplay = displayTime;
         dialogBox.SetActive(true);
     }
 
