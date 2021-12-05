@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthCollectible : MonoBehaviour
+public class ManaCollectible : MonoBehaviour
 {
     public AudioClip collectedClip;
 
@@ -12,9 +12,9 @@ public class HealthCollectible : MonoBehaviour
 
         if (lenzController != null)
         {
-            if (lenzController.currentHealth < lenzController.MaxHealth)
+            if (lenzController.Mana < lenzController.MaxMana)
             {
-                lenzController.ChangeHealth(1);
+                lenzController.ChangeMana(3);
                 Destroy(gameObject);
                 lenzController.PlaySound(collectedClip);
             }
