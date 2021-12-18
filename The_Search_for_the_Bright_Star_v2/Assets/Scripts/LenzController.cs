@@ -5,18 +5,16 @@ using UnityEngine;
  */
 public class LenzController : MonoBehaviour
 {
-    
     // Player attack variables
     public GameObject projectilePrefab;
 
     // Player health variables
-    public int MaxHealth = 5;
-    public int Health { get { return currentHealth; } }
-    public int currentHealth;
+    public const int MaxHealth = 5;
+    public int Health { get; private set; }
 
     // Player mana variables
-    public int MaxMana = 5;
-    public float Mana {get; private set;}
+    public const int MaxMana = 5;
+    public float Mana { get; private set; }
 
     // Player movement variables
     public float speed = 3.0f;
@@ -44,8 +42,17 @@ public class LenzController : MonoBehaviour
         animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         
-        Mana = MaxMana;
-        currentHealth = MaxHealth;
+        Debug.Log("AppState health on Start(): " + AppState.Instance.Health);
+        Debug.Log("AppState mana on Start(): " + AppState.Instance.Mana);
+
+        Health = AppState.Instance.Health ?? MaxHealth;
+        Mana = AppState.Instance.Mana ?? MaxMana;
+
+        HealthBar.Instance.SetValue((float)Health / MaxHealth);
+        ManaBar.Instance.SetValue(Mana / MaxMana);
+
+        Debug.Log("Health in Start is now at: " + Health);
+        Debug.Log("Mana in Start is now at: " + Mana);
     }
 
     // Update is called every frame
@@ -114,8 +121,8 @@ public class LenzController : MonoBehaviour
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeHealth(int amount)
     {   
-        currentHealth = Mathf.Clamp((int)(currentHealth + amount), 0, MaxHealth);
-        Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
+        Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
+        Debug.Log("Player health: " + Health + "/" + MaxHealth);
         if(Health <= 0){
           Die();
         }
@@ -136,11 +143,19 @@ public class LenzController : MonoBehaviour
     {
         _audioSource.PlayOneShot(clip);
     }
-    private void Die() {
-      {
+
+    private void Die() 
+    {
         transform.position = new Vector2(-1.48f,-7.93f);
         ChangeHealth(MaxHealth);
         ChangeMana(MaxMana);
-      }
+    }
+    public void SaveLenzState()
+    {
+        AppState.Instance.Health = Health;
+        AppState.Instance.Mana = Mana;
+
+        Debug.Log("AppState health SaveLenzState(): " + AppState.Instance.Health);
+        Debug.Log("AppState mana SaveLenzState(): " + AppState.Instance.Mana);
     }
 }

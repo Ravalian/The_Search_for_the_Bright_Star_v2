@@ -12,7 +12,7 @@ public class ManaCollectible : MonoBehaviour
 
         if (lenzController != null)
         {
-            if (lenzController.Mana < lenzController.MaxMana)
+            if (lenzController.Mana < LenzController.MaxMana)
             {
                 lenzController.ChangeMana(3);
                 Destroy(gameObject);
