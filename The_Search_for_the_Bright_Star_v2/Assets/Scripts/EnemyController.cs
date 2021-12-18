@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyController : MonoBehaviour
 {
@@ -32,19 +33,25 @@ public class EnemyController : MonoBehaviour
     public float awarenessRange;
     public float distanceToTarget;
 
-    //private float timer;
-    //private int direction = 1;
-
     Animator animator;
-    Rigidbody2D rigidbody2d;
+    Rigidbody2D rb2D;
 
+    // new
+    public float nextWaypointDistance = 3f;
+
+    Seeker seeker;
+    Path path;
+    int currentWaypoint = 0;
+    bool reachedEndOfPath = false;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        seeker = GetComponent<Seeker>();
+        rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        //timer = changeTime;
         currentHealth = MaxHealth;
 
         currentPatrolIndex = 0;
@@ -53,33 +60,11 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        //timer -= Time.deltaTime;
 
-        //if (timer < 0)
-        //{
-        //    direction = -direction;
-        //    timer = changeTime;
-        //}
     }
 
     void FixedUpdate()
     {
-        // Working moving script in ether the vertical or horizontal direction witch animations
-        //Vector2 position = rigidbody2d.position;
-
-        //if (vertical)
-        //{
-        //    position.y = position.y + Time.deltaTime * speed * direction;
-        //    animator.SetFloat("MoveY", direction);
-        //}
-        //else
-        //{
-        //    position.x = position.x + Time.deltaTime * speed * direction;
-        //    animator.SetFloat("MoveX", direction);
-        //}
-
-        //rigidbody2d.MovePosition(position);
-
         // Check the ditstance to the player
         distanceToTarget = Vector3.Distance(transform.position, target.position);
 
@@ -92,25 +77,18 @@ public class EnemyController : MonoBehaviour
         // Check the distance between enemy and player, to see if the player is within the awarenessRange and out of attackRange - chase
         if (distanceToTarget < awarenessRange && distanceToTarget > attackRange)
         {
-            Chase();
+            //Chase();
+            //InvokeRepeating("UpdatePath", 0f, .5f);
+            seeker.StartPath(rb2D.position, target.position, OnPathComplete);
+            Chase_v2();
         }
 
         // Check the distance between enemy and player to see if the player is close enough to attack
-        if (distanceToTarget < attackRange)
+        if (distanceToTarget <= attackRange)
         {
             Attack();
         }
     }
-
-    //void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    LenzController player = other.gameObject.GetComponent<LenzController>();
-
-    //    if (player != null)
-    //    {
-    //        player.ChangeHealth(-1);
-    //    }
-    //}
 
     public void EnemyIsDead()
     {
@@ -189,6 +167,65 @@ public class EnemyController : MonoBehaviour
 
             // Record the time of the attacked
             lastAttackTime = Time.time;
+        }
+    }
+
+    // AStare Pathfinding
+
+    void UpdatePath()
+    {
+        if (seeker.IsDone())
+            seeker.StartPath(rb2D.position, target.position, OnPathComplete);
+    }
+
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    void Chase_v2()
+    {
+        Debug.Log("Do i get her?");
+        // Chasing Player AI
+        // Get the distance to the target and check to see if it is close enough to chase
+
+        if (path == null)
+        {
+            return;
+        }
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+
+        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb2D.position).normalized;
+        Vector2 force = dir * speed * Time.deltaTime;
+
+        rb2D.AddForce(force);
+
+        float dis = Vector2.Distance(rb2D.position, path.vectorPath[currentWaypoint]);
+
+        if (dis < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+
+        if (rb2D.velocity.x >= 0.01f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        if (rb2D.velocity.x <= -0.01f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }

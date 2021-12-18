@@ -7,7 +7,8 @@ public class LenzController : MonoBehaviour
 {
     
     // Player attack variables
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefabArrowUpAndDown;
+    public GameObject projectilePrefabArrowLeftAndRigth;
 
     // Player health variables
     public int MaxHealth = 5;
@@ -16,7 +17,8 @@ public class LenzController : MonoBehaviour
 
     // Player mana variables
     public int MaxMana = 5;
-    public float Mana {get; private set;}
+    public float Mana {get { return currentHealth; } }
+    public float currentMana;
 
     // Player movement variables
     public float speed = 3.0f;
@@ -43,8 +45,8 @@ public class LenzController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        
-        Mana = MaxMana;
+
+        currentMana = MaxMana;
         currentHealth = MaxHealth;
     }
 
@@ -95,17 +97,22 @@ public class LenzController : MonoBehaviour
     // function to use range attack
     void Launch()
     {
-      if(Mana > 0){
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        if(currentMana > 0){
+            GameObject projectileObject;
+            Projectile projectile;
 
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-        Mana = Mana - 0.5f;
-        //animator.SetTrigger("Launch");
+            projectileObject = Instantiate(projectilePrefabArrowUpAndDown, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
 
-        PlaySound(ShotProjectile);
-        ManaBar.Instance.SetValue(Mana/MaxMana);
-      }
+
+
+            currentMana -= 0.5f;
+            //animator.SetTrigger("Launch");
+
+            PlaySound(ShotProjectile);
+            ManaBar.Instance.SetValue(currentMana / MaxMana);
+        }
     }
 
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
@@ -119,8 +126,8 @@ public class LenzController : MonoBehaviour
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeMana(int amount)
     {
-        Mana = Mathf.Clamp(Mana + amount, 0, MaxMana);
-        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
+        currentMana = Mathf.Clamp(currentMana + amount, 0, MaxMana);
+        Debug.Log("Player mana: " + currentMana + "/" + MaxMana);
         ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 

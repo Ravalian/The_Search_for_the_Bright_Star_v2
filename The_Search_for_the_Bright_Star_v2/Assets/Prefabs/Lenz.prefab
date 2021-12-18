@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdecc1dfa86d4445879277169db04b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8345949604438098501, guid: cdbb583c0f950bb4bac49406b5ed1f23, type: 3}
+  projectilePrefabArrowUpAndDown: {fileID: 94205137285040569, guid: 00cbedab682968445aa1ff4ec2270d31, type: 3}
+  projectilePrefabArrowLeftAndRigth: {fileID: 8345949604438098501, guid: cdbb583c0f950bb4bac49406b5ed1f23, type: 3}
   MaxHealth: 5
   currentHealth: 0
   MaxMana: 10
+  currentMana: 0
   speed: 3
   ShotProjectile: {fileID: 8300000, guid: e13562ae8a10e004c811f403884b5fcb, type: 3}
   dialogueUI: {fileID: 0}
