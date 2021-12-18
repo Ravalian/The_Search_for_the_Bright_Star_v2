@@ -39,9 +39,9 @@ public class CateractController : MonoBehaviour
     {
         if (!run)
         {
-            Thread thread1 = new Thread(() => DoWork());
-            thread1.Start();
-            run = true;
+            //Thread thread1 = new Thread(() => DoWork());
+            //thread1.Start();
+            //run = true;
         }
 
         animator.SetFloat("MoveX", horizontal);
