@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 239eb4178424b2149939a2e3df7de80b, type: 3}
-  m_Name: Dialogue_DungeonLever
+  m_Name: Dialogue_Junk
   m_EditorClassIdentifier: 
   dialogue:
-  - You pulled the lever.
-  - You heard the sound of chains rattling followed by yelling coming from the stairs.
-  - You try to pull the lever back, but it seems to be stuck.
+  - Some junk is in the way...
+  - If you gained a fire ability, you might be able to burn it...
