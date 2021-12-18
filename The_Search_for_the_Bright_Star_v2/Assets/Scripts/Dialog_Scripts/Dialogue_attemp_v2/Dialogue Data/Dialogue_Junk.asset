@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239eb4178424b2149939a2e3df7de80b, type: 3}
   m_Name: Dialogue_Junk
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - Some junk is in the way...
+  - If you gained a fire ability, you might be able to burn it...
