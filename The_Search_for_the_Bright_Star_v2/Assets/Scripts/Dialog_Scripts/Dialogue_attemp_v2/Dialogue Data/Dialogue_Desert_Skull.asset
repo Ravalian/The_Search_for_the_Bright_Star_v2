@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239eb4178424b2149939a2e3df7de80b, type: 3}
+  m_Name: Dialogue_Desert_Skull
+  m_EditorClassIdentifier: 
+  dialogue:
+  - You stare in awe at the giant skull before you. You wonder if it is real or not.
+  - "Hoping it is not real you decide to leave the skull alone. \n"
+  - As you turn around you notice the footprints you followed here continues around
+    the skull
+  - '"Story line still work in progress"'
