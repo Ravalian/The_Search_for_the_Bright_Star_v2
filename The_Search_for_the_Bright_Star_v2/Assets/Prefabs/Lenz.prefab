@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3091427523207131709}
   - component: {fileID: 8769703126263935797}
   - component: {fileID: 7190268358573078715}
+  - component: {fileID: 8791905273456317268}
   m_Layer: 8
   m_Name: Lenz
   m_TagString: Player
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011184216, y: -0.65996337}
+  m_Offset: {x: 0.01635933, y: -0.65996337}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0058517, y: 0.22345603}
+  m_Size: {x: 0.9230509, y: 0.22345603}
   m_EdgeRadius: 0
 --- !u!95 &8769703126263935797
 Animator:
@@ -270,3 +271,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &8791905273456317268
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100604676508149919}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.014034551, y: -0.668971}
+  m_Size: {x: 0.8918505, y: 0.16206433}
+  m_Direction: 1

@@ -81,6 +81,9 @@ public class LenzController : MonoBehaviour
                 Interctable.Interact(this);
             }
         }
+        if(Mana < MaxMana){
+          ChangeMana(0.001f);
+        }
     }
 
     private void FixedUpdate()
@@ -118,21 +121,33 @@ public class LenzController : MonoBehaviour
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeHealth(int amount)
     {   
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
+        currentHealth = Mathf.Clamp((int)(currentHealth + amount), 0, MaxHealth);
         Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
+        if(Health <= 0){
+          Die();
+        }
         HealthBar.Instance.SetValue((float)Health/MaxHealth);
     }
 
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
-    public void ChangeMana(int amount)
+    public void ChangeMana(float amount)
     {
-        currentMana = Mathf.Clamp(currentMana + amount, 0, MaxMana);
-        Debug.Log("Player mana: " + currentMana + "/" + MaxMana);
+        //Mana = Mathf.Clamp((int)(Mana + amount), 0, MaxMana);
+        float tempmana = Mana + amount;
+        Mana = tempmana > MaxMana ? MaxMana : tempmana;
+        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
         ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 
     public void PlaySound(AudioClip clip)
     {
         _audioSource.PlayOneShot(clip);
+    }
+    private void Die() {
+      {
+        transform.position = new Vector2(-1.48f,-7.93f);
+        ChangeHealth(MaxHealth);
+        ChangeMana(MaxMana);
+      }
     }
 }

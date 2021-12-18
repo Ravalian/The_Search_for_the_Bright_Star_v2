@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - You pulled the lever.
-  - Nothing happened!
+  - You heard the sound of chains rattling followed by yelling coming from the stairs.
+  - You try to pull the lever back, but it seems to be stuck.
