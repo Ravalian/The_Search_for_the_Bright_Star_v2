@@ -7,6 +7,7 @@ public class DungeonEntrance : MonoBehaviour
     public GameObject levelLoader;
 
     public const string LevelLoader = "LevelLoader";
+    public const string PlayerTag = "Player";
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,9 +15,13 @@ public class DungeonEntrance : MonoBehaviour
 
         levelLoader = GameObject.FindWithTag(LevelLoader);
 
-        if (levelLoader != null)
+        if (other.CompareTag(PlayerTag) && other.TryGetComponent(out LenzController player))
         {
-            levelLoader.GetComponent<LevelLoader>().LoadDungeonLevel();
+            if (levelLoader != null)
+            {
+                player.SaveLenzState();
+                levelLoader.GetComponent<LevelLoader>().LoadDungeonLevel();
+            }
         }
     }
 }
