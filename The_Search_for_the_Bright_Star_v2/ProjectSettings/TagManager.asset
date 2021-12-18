@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gameobjects_Trees
+  - LevelLoader
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Projectile
   - Enemy
   - Items
-  - 
+  - InteractableObject
   - 
   - 
   - 

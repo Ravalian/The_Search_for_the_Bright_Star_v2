@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7190268358573078715}
   m_Layer: 8
   m_Name: Lenz
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   MaxMana: 10
   speed: 3
   ShotProjectile: {fileID: 8300000, guid: e13562ae8a10e004c811f403884b5fcb, type: 3}
+  dialogueUI: {fileID: 0}
 --- !u!50 &-6009645368334123902
 Rigidbody2D:
   serializedVersion: 4
