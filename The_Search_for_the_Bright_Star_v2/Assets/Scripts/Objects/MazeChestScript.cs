@@ -24,11 +24,11 @@ public class MazeChestScript : MonoBehaviour, IInterctable
     {
         
     }
-     private void OnTriggerExit2D(Collider2D other) {
+    private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("Does it enter OnTriggerExit2D?");
         if(other.CompareTag("Player") && other.TryGetComponent(out LenzController player))
         {
-            if(player.Interctable is DialogueActivator dialogueActivator && dialogueActivator == this)
+            if(player.Interctable is MazeChestScript mazeChestScript && mazeChestScript == this)
             {
                 player.Interctable = null;
             }

@@ -27,7 +27,7 @@ public class DungeonLeverController : MonoBehaviour, IInterctable
         Debug.Log("Does it enter OnTriggerExit2D?");
         if(other.CompareTag("Player") && other.TryGetComponent(out LenzController player))
         {
-            if(player.Interctable is DialogueActivator dialogueActivator && dialogueActivator == this)
+            if(player.Interctable is DungeonLeverController dungeonLeverController && dungeonLeverController == this)
             {
                 player.Interctable = null;
             }

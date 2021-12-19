@@ -27,7 +27,7 @@ public class JunkScript : MonoBehaviour, IInterctable
         Debug.Log("Does it enter OnTriggerExit2D?");
         if(other.CompareTag("Player") && other.TryGetComponent(out LenzController player))
         {
-            if(player.Interctable is DialogueActivator dialogueActivator && dialogueActivator == this)
+            if(player.Interctable is JunkScript junkScript && junkScript == this)
             {
                 player.Interctable = null;
             }
