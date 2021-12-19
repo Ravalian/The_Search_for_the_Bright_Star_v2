@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2830031972751028906}
   - component: {fileID: 3379610910010959567}
+  - component: {fileID: -4008043457876702839}
   - component: {fileID: -2650876124670580205}
+  - component: {fileID: -5978669925956624226}
   - component: {fileID: 9056103161021895576}
-  - component: {fileID: -8635800183531667566}
+  - component: {fileID: 7018851814586024568}
   - component: {fileID: -8209962402696522187}
   m_Layer: 10
   m_Name: Splinter
@@ -86,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2650876124670580205
+--- !u!114 &-4008043457876702839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,6 +96,34 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3745698547533791107}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &-2650876124670580205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745698547533791107}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da7c1666b4ef44e4fbf0ff9242a082cd, type: 3}
   m_Name: 
@@ -110,6 +140,31 @@ MonoBehaviour:
   attackRange: 1
   awarenessRange: 8
   distanceToTarget: 0
+--- !u!114 &-5978669925956624226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745698547533791107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24139f22bf522c4796ea5e8fdff9200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  changeTime: 3
+  MaxHealth: 5
+  currentHealth: 0
+  patrolPoints: []
+  target: {fileID: 0}
+  chaseRange: 7
+  damage: 1
+  attackDelay: 2
+  attackRange: 1
+  awarenessRange: 8
+  distanceToTarget: 0
+  nextWaypointDistance: 3
 --- !u!50 &9056103161021895576
 Rigidbody2D:
   serializedVersion: 4
@@ -130,9 +185,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &-8635800183531667566
-BoxCollider2D:
+  m_Constraints: 4
+--- !u!70 &7018851814586024568
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,19 +199,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
-    newSize: {x: 1.5, y: 1.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.2, y: -0.36}
+  m_Size: {x: 1, y: 0.16}
+  m_Direction: 1
 --- !u!95 &-8209962402696522187
 Animator:
   serializedVersion: 3

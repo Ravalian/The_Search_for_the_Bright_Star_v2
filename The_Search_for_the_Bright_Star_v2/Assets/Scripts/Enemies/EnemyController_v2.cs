@@ -6,7 +6,6 @@ using Pathfinding;
 public class EnemyController_v2 : MonoBehaviour
 {
     public float speed;
-    //public bool vertical;
     public float changeTime = 3.0f;
 
     // Enemy health variables
@@ -17,7 +16,7 @@ public class EnemyController_v2 : MonoBehaviour
     // Patrole variables
     public Transform[] patrolPoints;
     Transform currentPatrolPoint;
-    int currentPatrolIndex;
+    private int currentPatrolIndex;
 
     // Enemy chase variables
     public Transform target;
@@ -27,22 +26,22 @@ public class EnemyController_v2 : MonoBehaviour
     public int damage;
     public float attackDelay;
     public float attackRange;
-    float lastAttackTime;
+    private float lastAttackTime;
 
     // Enemy awareness
     public float awarenessRange;
     public float distanceToTarget;
 
-    Animator animator;
-    Rigidbody2D rb2D;
+    private Animator animator;
+    private Rigidbody2D rb2D;
 
-    // new
+    // AStar Pathfinding
     public float nextWaypointDistance = 3f;
 
-    Seeker seeker;
-    Path path;
-    int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
+    private Seeker seeker;
+    private Path path;
+    private int currentWaypoint = 0;
+    private bool reachedEndOfPath = false;
 
 
     // Start is called before the first frame update
@@ -56,6 +55,9 @@ public class EnemyController_v2 : MonoBehaviour
 
         currentPatrolIndex = 0;
         currentPatrolPoint = patrolPoints[currentPatrolIndex];
+
+
+        InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
     void Update()
@@ -71,16 +73,13 @@ public class EnemyController_v2 : MonoBehaviour
         // Check to see if the enmey is aware of the player - if not then patrol
         if (distanceToTarget > awarenessRange)
         {
-            CancelInvoke("UpdatePath");
             Patrol();
         }
 
         // Check the distance between enemy and player, to see if the player is within the awarenessRange and out of attackRange - chase
         if (distanceToTarget <= awarenessRange && distanceToTarget > attackRange)
         {
-            //Chase();
-            InvokeRepeating("UpdatePath", 0f, .5f);
-            Chase_v2();
+            Chase_AStarPathfinding();
         }
 
         // Check the distance between enemy and player to see if the player is close enough to attack
@@ -137,7 +136,6 @@ public class EnemyController_v2 : MonoBehaviour
         // Apply the rotation to our transform
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
 
-
         animator.SetFloat("MoveY", patrolPointDir.y);
         animator.SetFloat("MoveX", patrolPointDir.x);
     }
@@ -148,12 +146,12 @@ public class EnemyController_v2 : MonoBehaviour
         // Get the distance to the target and check to see if it is close enough to chase
 
         // Start chasing the target - turn and move towards the target
-        Vector3 targetDir = target.position - transform.position;
+        /*Vector3 targetDir = target.position - transform.position;
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
 
-        transform.Translate(speed * Time.deltaTime * Vector3.up);
+        transform.Translate(speed * Time.deltaTime * Vector3.up);*/
     }
 
     void Attack()
@@ -189,7 +187,7 @@ public class EnemyController_v2 : MonoBehaviour
         }
     }
 
-    void Chase_v2()
+    void Chase_AStarPathfinding()
     {
 
         // Chasing Player AI
@@ -209,8 +207,8 @@ public class EnemyController_v2 : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Debug.Log("What is currentWaypoint: " + currentWaypoint);
-        Debug.Log("What is path.vectorPath[currentWaypoint]: " + path.vectorPath[currentWaypoint]);
+        //Debug.Log("What is currentWaypoint: " + currentWaypoint);
+        //Debug.Log("What is path.vectorPath[currentWaypoint]: " + path.vectorPath[currentWaypoint]);
         //Debug.Log("What is reachedEndOfPath: " + reachedEndOfPath);
 
         var AStarSpeed = speed * 100f;
@@ -221,11 +219,11 @@ public class EnemyController_v2 : MonoBehaviour
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
         Vector3 force = dir * AStarSpeed * Time.deltaTime;
 
-        Debug.Log("What is the dir: " + dir);
-        Debug.Log("What is the speed: " + AStarSpeed);
-        Debug.Log("What is the Time.deltaTime: " + Time.deltaTime);
+        //Debug.Log("What is the dir: " + dir);
+        //Debug.Log("What is the speed: " + AStarSpeed);
+        //Debug.Log("What is the Time.deltaTime: " + Time.deltaTime);
 
-        Debug.Log("What is the force: " + force);
+        //Debug.Log("What is the force: " + force);
 
         rb2D.AddForce(force);
 
