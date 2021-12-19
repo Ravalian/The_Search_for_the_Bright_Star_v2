@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Confiner
-  - 
+  - Collidable
   - Character
   - Projectile
   - Enemy

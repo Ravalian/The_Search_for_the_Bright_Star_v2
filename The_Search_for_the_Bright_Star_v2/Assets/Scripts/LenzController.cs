@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class LenzController : MonoBehaviour
 {
     // Player attack variables
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefabArrowUpAndDown;
+    public GameObject projectilePrefabArrowLeftAndRigth;
 
     // Player health variables
     public const int MaxHealth = 5;
@@ -108,24 +109,29 @@ public class LenzController : MonoBehaviour
     // function to use range attack
     void Launch()
     {
-      if(Mana > 0){
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        if(Mana > 0){
+            GameObject projectileObject;
+            Projectile projectile;
 
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-        Mana = Mana - 0.5f;
-        //animator.SetTrigger("Launch");
+            projectileObject = Instantiate(projectilePrefabArrowUpAndDown, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
 
-        PlaySound(ShotProjectile);
-        ManaBar.Instance.SetValue(Mana/MaxMana);
-      }
+
+
+            Mana -= 0.5f;
+            //animator.SetTrigger("Launch");
+
+            PlaySound(ShotProjectile);
+            ManaBar.Instance.SetValue(Mana / MaxMana);
+        }
     }
 
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeHealth(int amount)
     {   
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
-        Debug.Log("Player health: " + Health + "/" + MaxHealth);
+        //Debug.Log("Player health: " + Health + "/" + MaxHealth);
         if(Health <= 0){
           Die();
         }
@@ -138,7 +144,7 @@ public class LenzController : MonoBehaviour
         //Mana = Mathf.Clamp((int)(Mana + amount), 0, MaxMana);
         float tempmana = Mana + amount;
         Mana = tempmana > MaxMana ? MaxMana : tempmana;
-        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
+        //Debug.Log("Player mana: " + Mana + "/" + MaxMana);
         ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 
