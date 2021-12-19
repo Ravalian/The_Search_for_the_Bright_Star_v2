@@ -134,7 +134,7 @@ public class EnemyController_v2 : MonoBehaviour
         // Made the rotation that we need to face
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         // Apply the rotation to our transform
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
 
         animator.SetFloat("MoveY", patrolPointDir.y);
         animator.SetFloat("MoveX", patrolPointDir.x);
@@ -249,5 +249,7 @@ public class EnemyController_v2 : MonoBehaviour
         }
 
         //Debug.Log("What is transform.localScale: " + transform.localScale);
+        animator.SetFloat("MoveY", rb2D.velocity.y);
+        animator.SetFloat("MoveX", rb2D.velocity.x);
     }
 }

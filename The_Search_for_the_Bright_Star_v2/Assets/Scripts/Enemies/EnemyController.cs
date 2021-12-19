@@ -123,8 +123,8 @@ public class EnemyController : MonoBehaviour
         // Made the rotation that we need to face
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         // Apply the rotation to our transform
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
-
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+        
         Debug.Log(patrolPointDir.x);
         animator.SetFloat("MoveY", patrolPointDir.y);
         animator.SetFloat("MoveX", patrolPointDir.x);
@@ -139,9 +139,25 @@ public class EnemyController : MonoBehaviour
         Vector3 targetDir = target.position - transform.position;
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
-
-        transform.Translate(speed * Time.deltaTime * Vector3.up);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+        var vector = Vector3.back;
+        var y = targetDir.y;
+        var x = targetDir.x;
+        Debug.Log("X="+x);
+        if(y>x && y>1){
+          vector = Vector3.up;
+        }
+        else if(y<x && y<-1) {
+          vector = Vector3.down;
+        } else if(x<y && x<-1) {
+          vector = Vector3.left;
+        } else if(x>y && x>1){
+          vector = Vector3.right;
+        }
+        transform.Translate(speed * Time.deltaTime * vector);
+        animator.SetFloat("MoveY", targetDir.y);
+        animator.SetFloat("MoveX", targetDir.x);
+        //transform.Translate(speed * Time.deltaTime);
     }
 
     void Attack()

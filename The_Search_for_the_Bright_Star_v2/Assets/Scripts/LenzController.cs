@@ -91,7 +91,7 @@ public class LenzController : MonoBehaviour
             }
         }
         if(Mana < MaxMana){
-          ChangeMana(0.001f);
+          ChangeMana(0.0001f);
         }
     }
 
@@ -113,7 +113,7 @@ public class LenzController : MonoBehaviour
             GameObject projectileObject;
             Projectile projectile;
 
-            projectileObject = Instantiate(projectilePrefabArrowUpAndDown, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            projectileObject = Instantiate(projectilePrefabArrowUpAndDown, rigidbody2d.position - Vector2.up * 0.15f, Quaternion.identity);
             projectile = projectileObject.GetComponent<Projectile>();
             projectile.Launch(lookDirection, 300);
 
