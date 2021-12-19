@@ -109,7 +109,7 @@ public class LenzController : MonoBehaviour
     // function to use range attack
     void Launch()
     {
-        if(currentMana > 0){
+        if(Mana > 0){
             GameObject projectileObject;
             Projectile projectile;
 
@@ -119,11 +119,11 @@ public class LenzController : MonoBehaviour
 
 
 
-            currentMana -= 0.5f;
+            Mana -= 0.5f;
             //animator.SetTrigger("Launch");
 
             PlaySound(ShotProjectile);
-            ManaBar.Instance.SetValue(currentMana / MaxMana);
+            ManaBar.Instance.SetValue(Mana / MaxMana);
         }
     }
 

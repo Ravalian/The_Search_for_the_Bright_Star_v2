@@ -58,7 +58,7 @@ public class EnemyAI : MonoBehaviour
         // Check to see if the enmey is aware of the player - if not then patrol
         if (distanceToTarget > awarenessRange)
         {
-            CancelInvoke("UpdatePath");
+            //CancelInvoke("UpdatePath");
             
         }
 
