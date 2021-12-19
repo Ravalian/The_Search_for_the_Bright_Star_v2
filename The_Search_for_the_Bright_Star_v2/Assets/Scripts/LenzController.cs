@@ -91,7 +91,7 @@ public class LenzController : MonoBehaviour
             }
         }
         if(Mana < MaxMana){
-          ChangeMana(0.0001f);
+          ChangeMana(0.0002f);
         }
     }
 
