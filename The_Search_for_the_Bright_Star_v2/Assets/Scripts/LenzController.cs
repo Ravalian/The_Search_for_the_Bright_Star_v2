@@ -17,7 +17,7 @@ public class LenzController : MonoBehaviour
 
     // Player mana variables
     public int MaxMana = 5;
-    public float Mana {get { return currentHealth; } }
+    public float Mana { get; private set; }
     public float currentMana;
 
     // Player movement variables
@@ -122,7 +122,7 @@ public class LenzController : MonoBehaviour
     public void ChangeHealth(int amount)
     {   
         currentHealth = Mathf.Clamp((int)(currentHealth + amount), 0, MaxHealth);
-        Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
+        //Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
         if(Health <= 0){
           Die();
         }
@@ -135,7 +135,7 @@ public class LenzController : MonoBehaviour
         //Mana = Mathf.Clamp((int)(Mana + amount), 0, MaxMana);
         float tempmana = Mana + amount;
         Mana = tempmana > MaxMana ? MaxMana : tempmana;
-        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
+        //Debug.Log("Player mana: " + Mana + "/" + MaxMana);
         ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 

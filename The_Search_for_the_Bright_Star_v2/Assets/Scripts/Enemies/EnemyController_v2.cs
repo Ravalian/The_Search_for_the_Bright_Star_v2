@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController_v2 : MonoBehaviour
 {
     public float speed;
     //public bool vertical;
@@ -11,9 +11,9 @@ public class EnemyController : MonoBehaviour
 
     // Enemy health variables
     public int MaxHealth = 5;
-    public int Health { get { return currentHealth; }}
+    public int Health { get { return currentHealth; } }
     public int currentHealth;
-    
+
     // Patrole variables
     public Transform[] patrolPoints;
     Transform currentPatrolPoint;
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,15 +71,15 @@ public class EnemyController : MonoBehaviour
         // Check to see if the enmey is aware of the player - if not then patrol
         if (distanceToTarget > awarenessRange)
         {
+            CancelInvoke("UpdatePath");
             Patrol();
         }
 
         // Check the distance between enemy and player, to see if the player is within the awarenessRange and out of attackRange - chase
-        if (distanceToTarget < awarenessRange && distanceToTarget > attackRange)
+        if (distanceToTarget <= awarenessRange && distanceToTarget > attackRange)
         {
             //Chase();
-            //InvokeRepeating("UpdatePath", 0f, .5f);
-            seeker.StartPath(rb2D.position, target.position, OnPathComplete);
+            InvokeRepeating("UpdatePath", 0f, .5f);
             Chase_v2();
         }
 
@@ -175,7 +175,9 @@ public class EnemyController : MonoBehaviour
     void UpdatePath()
     {
         if (seeker.IsDone())
+        {
             seeker.StartPath(rb2D.position, target.position, OnPathComplete);
+        }
     }
 
     private void OnPathComplete(Path p)
@@ -189,7 +191,7 @@ public class EnemyController : MonoBehaviour
 
     void Chase_v2()
     {
-        Debug.Log("Do i get her?");
+
         // Chasing Player AI
         // Get the distance to the target and check to see if it is close enough to chase
 
@@ -207,17 +209,37 @@ public class EnemyController : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb2D.position).normalized;
-        Vector2 force = dir * speed * Time.deltaTime;
+        Debug.Log("What is currentWaypoint: " + currentWaypoint);
+        Debug.Log("What is path.vectorPath[currentWaypoint]: " + path.vectorPath[currentWaypoint]);
+        //Debug.Log("What is reachedEndOfPath: " + reachedEndOfPath);
+
+        var AStarSpeed = speed * 100f;
+
+        //Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb2D.position).normalized;
+        //Vector2 force = dir * AStarSpeed * Time.deltaTime;
+
+        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+        Vector3 force = dir * AStarSpeed * Time.deltaTime;
+
+        Debug.Log("What is the dir: " + dir);
+        Debug.Log("What is the speed: " + AStarSpeed);
+        Debug.Log("What is the Time.deltaTime: " + Time.deltaTime);
+
+        Debug.Log("What is the force: " + force);
 
         rb2D.AddForce(force);
 
         float dis = Vector2.Distance(rb2D.position, path.vectorPath[currentWaypoint]);
 
+        //Debug.Log("What is the dis: " + dis);
+
         if (dis < nextWaypointDistance)
         {
             currentWaypoint++;
         }
+
+        //Debug.Log("What is currentWaypoint: " + currentWaypoint);
+        //Debug.Log("What is rb2D.velocity.x: " + rb2D.velocity.x);
 
         if (rb2D.velocity.x >= 0.01f)
         {
@@ -227,5 +249,7 @@ public class EnemyController : MonoBehaviour
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
+
+        //Debug.Log("What is transform.localScale: " + transform.localScale);
     }
 }

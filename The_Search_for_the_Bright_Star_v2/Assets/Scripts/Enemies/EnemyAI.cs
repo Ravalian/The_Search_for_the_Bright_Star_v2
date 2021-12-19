@@ -9,10 +9,10 @@ public class EnemyAI : MonoBehaviour
 
     public Transform target;
 
-    public float speed = 200;
+    public float speed = 100;
     public float nextWaypointDistance = 3f;
 
-    public Transform enemyGFX;
+    //public Transform enemyGFX;
 
     Path path;
     int currentWaypoint = 0;
@@ -61,8 +61,17 @@ public class EnemyAI : MonoBehaviour
             reachedEndOfPath = false;
         }
 
+        Debug.Log("What is currentWaypoint: " + currentWaypoint);
+        Debug.Log("What is path.vectorPath[currentWaypoint]: " + path.vectorPath[currentWaypoint]);
+
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb2D.position).normalized;
         Vector2 force = dir * speed * Time.deltaTime;
+
+        Debug.Log("What is the dir: " + dir);
+        Debug.Log("What is the speed: " + speed);
+        Debug.Log("What is the Time.deltaTime: " + Time.deltaTime);
+
+        Debug.Log("What is the force: " + force);
 
         rb2D.AddForce(force);
 

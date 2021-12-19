@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 446614804790305706}
   - component: {fileID: 1122013059319773135}
+  - component: {fileID: -2693189859437583467}
   - component: {fileID: 884993169485115414}
-  - component: {fileID: -7487523308781188773}
   - component: {fileID: 8809824737385806611}
+  - component: {fileID: 4297852885632916093}
   - component: {fileID: 6690456848134750872}
   - component: {fileID: 2410827513420206348}
   - component: {fileID: 2410827513420206338}
@@ -88,6 +89,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2693189859437583467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337461485119794819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbd98d01aa39704cb7b86ffabb646af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 100
+  nextWaypointDistance: 3
 --- !u!114 &884993169485115414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +132,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &-7487523308781188773
+--- !u!114 &8809824737385806611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,13 +141,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1337461485119794819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bbd98d01aa39704cb7b86ffabb646af, type: 3}
+  m_Script: {fileID: 11500000, guid: da7c1666b4ef44e4fbf0ff9242a082cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targer: {fileID: 0}
-  speed: 100
-  nextWaypointDistance: 3
-  enemyGFX: {fileID: 0}
+  speed: 1
+  changeTime: 3
+  MaxHealth: 2
+  currentHealth: 0
+  patrolPoints: []
+  target: {fileID: 0}
+  chaseRange: 7
+  damage: 1
+  attackDelay: 2
+  attackRange: 1
+  awarenessRange: 8
+  distanceToTarget: 0
+--- !u!114 &4297852885632916093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337461485119794819}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c24139f22bf522c4796ea5e8fdff9200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  changeTime: 3
   MaxHealth: 5
   currentHealth: 0
   patrolPoints: []
@@ -142,30 +180,7 @@ MonoBehaviour:
   attackRange: 0
   awarenessRange: 0
   distanceToTarget: 0
---- !u!114 &8809824737385806611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337461485119794819}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7c1666b4ef44e4fbf0ff9242a082cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  changeTime: 3
-  MaxHealth: 5
-  currentHealth: 0
-  patrolPoints: []
-  target: {fileID: 0}
-  chaseRange: 7
-  damage: 1
-  attackDelay: 2
-  attackRange: 1
-  awarenessRange: 8
-  distanceToTarget: 0
+  nextWaypointDistance: 3
 --- !u!50 &6690456848134750872
 Rigidbody2D:
   serializedVersion: 4

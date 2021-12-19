@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   changeTime: 3
-  MaxHealth: 5
+  MaxHealth: 2
   currentHealth: 0
   patrolPoints: []
   target: {fileID: 100604676508149914, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
