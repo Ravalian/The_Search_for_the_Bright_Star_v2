@@ -87,7 +87,7 @@ public class LenzController : MonoBehaviour
             }
         }
         if(Mana < MaxMana){
-          ChangeMana(0.001f);
+          ChangeMana(0.0001f);
         }
     }
 
@@ -106,7 +106,7 @@ public class LenzController : MonoBehaviour
     void Launch()
     {
       if(Mana > 0){
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position - Vector2.up*(0.15f), Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
@@ -122,7 +122,6 @@ public class LenzController : MonoBehaviour
     public void ChangeHealth(int amount)
     {   
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
-        Debug.Log("Player health: " + Health + "/" + MaxHealth);
         if(Health <= 0){
           Die();
         }
@@ -135,7 +134,6 @@ public class LenzController : MonoBehaviour
         //Mana = Mathf.Clamp((int)(Mana + amount), 0, MaxMana);
         float tempmana = Mana + amount;
         Mana = tempmana > MaxMana ? MaxMana : tempmana;
-        Debug.Log("Player mana: " + Mana + "/" + MaxMana);
         ManaBar.Instance.SetValue(Mana / MaxMana);
     }
 
