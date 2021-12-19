@@ -14,12 +14,12 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadDungeonLevel()
     {
-        StartCoroutine(LoadLevel("DungeonScene"));
+        StartCoroutine(LoadLevel(SceneNames.DungeonScene));
     }
 
     public void LoadOverworldLevel()
     {
-        StartCoroutine(LoadLevel("Main_Screen"));
+        StartCoroutine(LoadLevel(SceneNames.MainScene));
     }
 
     IEnumerator LoadLevel(string dungeonScene)
