@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2830031972751028906}
   - component: {fileID: 3379610910010959567}
   - component: {fileID: -4008043457876702839}
-  - component: {fileID: -2650876124670580205}
   - component: {fileID: -5978669925956624226}
   - component: {fileID: 9056103161021895576}
   - component: {fileID: 7018851814586024568}
@@ -116,30 +115,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &-2650876124670580205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3745698547533791107}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7c1666b4ef44e4fbf0ff9242a082cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  changeTime: 3
-  MaxHealth: 2
-  currentHealth: 0
-  patrolPoints: []
-  target: {fileID: 100604676508149914, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
-  chaseRange: 7
-  damage: 1
-  attackDelay: 2
-  attackRange: 1
-  awarenessRange: 8
-  distanceToTarget: 0
 --- !u!114 &-5978669925956624226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   changeTime: 3
-  MaxHealth: 5
+  MaxHealth: 2
   currentHealth: 0
   patrolPoints: []
   target: {fileID: 0}
