@@ -30,8 +30,14 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
-    public void Launch(Vector2 direction, float force)
+    public void Launch(Vector3 direction, float force)
     {
+        //Debug.Log(direction);
+
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         rigidbody2d.AddForce(direction * force);
     }
 

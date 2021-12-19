@@ -20,6 +20,8 @@ public class DungeonEntrance : MonoBehaviour
             if (levelLoader != null)
             {
                 player.SaveLenzState();
+                //Set last position on Main_Scene to near dungeon exit
+                player.SaveLenzPosition(new Vector2(56.33f, 35.13f), SceneNames.MainScene); 
                 levelLoader.GetComponent<LevelLoader>().LoadDungeonLevel();
             }
         }
