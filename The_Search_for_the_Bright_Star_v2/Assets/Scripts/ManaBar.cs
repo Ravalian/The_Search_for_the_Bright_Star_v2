@@ -5,27 +5,27 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-    public static ManaBar Instance { get; private set; }
+    public static ManaBar Instance;
+
     public Image mask;
     float originalSize;
-    // Start is called before the first frame update
-    void Start()
-    {
-        originalSize = mask.rectTransform.rect.width;
-    }
-
+    
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            originalSize = mask.rectTransform.rect.width;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
     public void SetValue(float value)
     {				      
         mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

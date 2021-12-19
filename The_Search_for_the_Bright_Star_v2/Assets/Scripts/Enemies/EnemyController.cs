@@ -125,7 +125,7 @@ public class EnemyController : MonoBehaviour
         // Apply the rotation to our transform
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
 
-
+        Debug.Log(patrolPointDir.x);
         animator.SetFloat("MoveY", patrolPointDir.y);
         animator.SetFloat("MoveX", patrolPointDir.x);
     }

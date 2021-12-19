@@ -1,24 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Code adapted from https://learn.unity.com/tutorial/world-interactions-blocking-movement?uv=2020.3&projectId=5c6166dbedbc2a0021b1bc7c#5ce3cdabedbc2a3ce61754e8
  */
 public class LenzController : MonoBehaviour
 {
-    
     // Player attack variables
     public GameObject projectilePrefabArrowUpAndDown;
     public GameObject projectilePrefabArrowLeftAndRigth;
 
     // Player health variables
-    public int MaxHealth = 5;
-    public int Health { get { return currentHealth; } }
-    public int currentHealth;
+    public const int MaxHealth = 5;
+    public int Health { get; private set; }
 
     // Player mana variables
-    public int MaxMana = 5;
+    public const int MaxMana = 5;
     public float Mana { get; private set; }
-    public float currentMana;
 
     // Player movement variables
     public float speed = 3.0f;
@@ -45,9 +43,20 @@ public class LenzController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        
+        Debug.Log("AppState health on Start(): " + AppState.Instance.Health);
+        Debug.Log("AppState mana on Start(): " + AppState.Instance.Mana);
 
-        currentMana = MaxMana;
-        currentHealth = MaxHealth;
+        Health = AppState.Instance.Health ?? MaxHealth;
+        Mana = AppState.Instance.Mana ?? MaxMana;
+
+        HealthBar.Instance.SetValue((float)Health / MaxHealth);
+        ManaBar.Instance.SetValue(Mana / MaxMana);
+
+        Debug.Log("Health in Start is now at: " + Health);
+        Debug.Log("Mana in Start is now at: " + Mana);
+
+        transform.position = AppState.Instance.Positions[SceneManager.GetActiveScene().name];
     }
 
     // Update is called every frame
@@ -121,8 +130,8 @@ public class LenzController : MonoBehaviour
     //Clamp makes sure Lenz is never below 0 hp or above maxhealth hp
     public void ChangeHealth(int amount)
     {   
-        currentHealth = Mathf.Clamp((int)(currentHealth + amount), 0, MaxHealth);
-        //Debug.Log("Player health: " + currentHealth + "/" + MaxHealth);
+        Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
+        //Debug.Log("Player health: " + Health + "/" + MaxHealth);
         if(Health <= 0){
           Die();
         }
@@ -143,11 +152,27 @@ public class LenzController : MonoBehaviour
     {
         _audioSource.PlayOneShot(clip);
     }
-    private void Die() {
-      {
-        transform.position = new Vector2(-1.48f,-7.93f);
+
+    private void Die()
+    {
+        //Reset main scene position
+        AppState.Instance.Positions[SceneNames.MainScene] = new Vector2(-4.96f, -1.33f);
+
+        transform.position = AppState.Instance.Positions[SceneManager.GetActiveScene().name];
         ChangeHealth(MaxHealth);
         ChangeMana(MaxMana);
-      }
+    }
+    public void SaveLenzState()
+    {
+        AppState.Instance.Health = Health;
+        AppState.Instance.Mana = Mana;
+
+        Debug.Log("AppState health SaveLenzState(): " + AppState.Instance.Health);
+        Debug.Log("AppState mana SaveLenzState(): " + AppState.Instance.Mana);
+    }
+
+    public void SaveLenzPosition(Vector2 vector, string scene)
+    {
+        AppState.Instance.Positions[scene] = vector;
     }
 }
