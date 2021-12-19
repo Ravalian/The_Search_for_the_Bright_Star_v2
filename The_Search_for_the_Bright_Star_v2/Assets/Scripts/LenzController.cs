@@ -19,7 +19,7 @@ public class LenzController : MonoBehaviour
     public float Mana { get; private set; }
 
     // Player movement variables
-    public float speed = 3.0f;
+    public float speed = 4.0f;
     private Rigidbody2D rigidbody2d;
     private float horizontal;
     private float vertical;

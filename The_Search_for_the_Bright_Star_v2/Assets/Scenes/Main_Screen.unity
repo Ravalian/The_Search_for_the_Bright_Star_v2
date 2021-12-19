@@ -124048,6 +124048,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100604676508149912, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100604676508149912, guid: 56bec66e068acbf488c855728f9b63ed, type: 3}
       propertyPath: MaxMana
       value: 5
       objectReference: {fileID: 0}
