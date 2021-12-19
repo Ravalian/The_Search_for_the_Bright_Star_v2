@@ -9,6 +9,9 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject audioMenuUI;
+    public GameObject controlsMenuUI;
+    public GameObject optionsMenuUI;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +31,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        optionsMenuUI.SetActive(false);
+        controlsMenuUI.SetActive(false);
+        audioMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -42,10 +48,21 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Debug.Log("Loading menu...");
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Debug.Log(SceneManager.GetActiveScene().buildIndex - 1);
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Debug.Log("Loading menu...");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            Debug.Log(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Debug.Log("Loading menu...");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+            Debug.Log(SceneManager.GetActiveScene().buildIndex - 2);
+        }
+        
     }
 
     public void QuitGame()
