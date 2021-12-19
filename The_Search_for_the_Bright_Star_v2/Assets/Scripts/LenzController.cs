@@ -156,7 +156,10 @@ public class LenzController : MonoBehaviour
     private void Die()
     {
         //Reset main scene position
-        AppState.Instance.Positions[SceneNames.MainScene] = new Vector2(-4.96f, -1.33f);
+        if (SceneManager.GetActiveScene().name == SceneNames.MainScene)
+        {
+            AppState.Instance.Positions[SceneNames.MainScene] = new Vector2(-4.96f, -1.33f);
+        }
 
         transform.position = AppState.Instance.Positions[SceneManager.GetActiveScene().name];
         ChangeHealth(MaxHealth);
