@@ -108,7 +108,7 @@ public class EnemyController_v2 : MonoBehaviour
     void Patrol()
     {
         // Patroling AI
-        transform.Translate(speed * Time.deltaTime * Vector3.up);
+        
         // Check to see if we have reached the patrole point
         if (Vector3.Distance(transform.position, currentPatrolPoint.position) < .1f)
         {
@@ -135,7 +135,21 @@ public class EnemyController_v2 : MonoBehaviour
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         // Apply the rotation to our transform
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180f);
+        var vector = Vector3.up;
+        var x = patrolPointDir.x;
+        var y = patrolPointDir.y;
+        if(x < y && x < 0){
+          vector = Vector3.left;
+        } else if(y < x && y < 0){
+          vector = Vector3.down;
+        } else if(y < x && x > 0){
+          vector = Vector3.right;
+        } else if(x < y && y > 0){
+          vector = Vector3.up;
+        }
+        
 
+        transform.Translate(speed * Time.deltaTime * vector);
         animator.SetFloat("MoveY", patrolPointDir.y);
         animator.SetFloat("MoveX", patrolPointDir.x);
     }
